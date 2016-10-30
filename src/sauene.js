@@ -1,3 +1,6 @@
+// polyfill
+import 'document-register-element';
+
 import {Button} from './components/button';
 import {Event} from './core/events/event';
 
