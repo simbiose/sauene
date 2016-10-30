@@ -10,6 +10,6 @@ Sauene is a bunch of web components built on [HTML Custom Elements](https://deve
 Author
 ======
 
-Victor Potasso
-[victorpotasso@gmail.com](mailto:victorpotasso@gmail.com)
+Victor Potasso <[victorpotasso@gmail.com](mailto:victorpotasso@gmail.com)>
+
 [victorpotasso.com](http://victorpotasso.com)

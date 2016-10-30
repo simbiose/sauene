@@ -1,3 +1,5 @@
+import {Event} from './events/event';
+
 export class BaseComponent extends HTMLElement {
     constructor() {
         super();
@@ -28,6 +30,10 @@ export class BaseComponent extends HTMLElement {
      */
     attachedCallback() {
         console.log(this.nodeName, 'attachedCallback', arguments);
+
+        let _event = document.createEvent('HTMLEvents');
+        _event.initEvent(Event.ADDED_TO_DOM, false, true);
+        this.dispatchEvent(_event);
     }
 
     /**
@@ -37,6 +43,10 @@ export class BaseComponent extends HTMLElement {
      */
     detachedCallback() {
         console.log(this.nodeName, 'detachedCallback', arguments);
+
+        let _event = document.createEvent('HTMLEvents');
+        _event.initEvent(Event.REMOVED_FROM_DOM, false, true);
+        this.dispatchEvent(_event);
     }
 
     /**

@@ -100,8 +100,11 @@ var Button = exports.Button = function (_BaseComponent) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.BaseComponent = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _event2 = require('./events/event');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -150,6 +153,10 @@ var BaseComponent = exports.BaseComponent = function (_HTMLElement) {
         key: 'attachedCallback',
         value: function attachedCallback() {
             console.log(this.nodeName, 'attachedCallback', arguments);
+
+            var _event = document.createEvent('HTMLEvents');
+            _event.initEvent(_event2.Event.ADDED_TO_DOM, false, true);
+            this.dispatchEvent(_event);
         }
 
         /**
@@ -162,6 +169,10 @@ var BaseComponent = exports.BaseComponent = function (_HTMLElement) {
         key: 'detachedCallback',
         value: function detachedCallback() {
             console.log(this.nodeName, 'detachedCallback', arguments);
+
+            var _event = document.createEvent('HTMLEvents');
+            _event.initEvent(_event2.Event.REMOVED_FROM_DOM, false, true);
+            this.dispatchEvent(_event);
         }
 
         /**
@@ -180,10 +191,68 @@ var BaseComponent = exports.BaseComponent = function (_HTMLElement) {
     return BaseComponent;
 }(HTMLElement);
 
-},{}],3:[function(require,module,exports){
+},{"./events/event":3}],3:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Event = exports.Event = function () {
+  function Event() {
+    _classCallCheck(this, Event);
+  }
+
+  _createClass(Event, null, [{
+    key: 'DOM_CONTENT_LOADED',
+
+    /**
+     * DOM_CONTENT_LOADED
+     * @type {String}
+     * @const
+     */
+    get: function get() {
+      return 'DOMContentLoaded';
+    }
+
+    /**
+     * ADDED_TO_DOM
+     * @type {String}
+     * @const
+     */
+
+  }, {
+    key: 'ADDED_TO_DOM',
+    get: function get() {
+      return 'added-to-dom';
+    }
+
+    /**
+     * REMOVED_FROM_DOM
+     * @type {String}
+     * @const
+     */
+
+  }, {
+    key: 'REMOVED_FROM_DOM',
+    get: function get() {
+      return 'removed-to-dom';
+    }
+  }]);
+
+  return Event;
+}();
+
+},{}],4:[function(require,module,exports){
 'use strict';
 
 var _button = require('./components/button');
+
+var _event = require('./core/events/event');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -199,13 +268,12 @@ var Sauene = function Sauene() {
 // boot
 
 
-var DOM_CONTENT_LOADED = "DOMContentLoaded";
 function contentLoaded(event) {
-    document.removeEventListener(DOM_CONTENT_LOADED, contentLoaded);
+    document.removeEventListener(_event.Event.DOM_CONTENT_LOADED, contentLoaded);
     new Sauene();
 }
-document.addEventListener(DOM_CONTENT_LOADED, contentLoaded);
+document.addEventListener(_event.Event.DOM_CONTENT_LOADED, contentLoaded);
 
-},{"./components/button":1}]},{},[3]);
+},{"./components/button":1,"./core/events/event":3}]},{},[4]);
 
 //# sourceMappingURL=sauene.js.map

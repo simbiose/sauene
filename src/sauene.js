@@ -1,4 +1,5 @@
 import {Button} from './components/button';
+import {Event} from './core/events/event';
 
 /**
  * Sauene
@@ -10,9 +11,8 @@ class Sauene {
 }
 
 // boot
-const DOM_CONTENT_LOADED = "DOMContentLoaded";
 function contentLoaded(event) {
-    document.removeEventListener(DOM_CONTENT_LOADED, contentLoaded);
+    document.removeEventListener(Event.DOM_CONTENT_LOADED, contentLoaded);
     new Sauene();
 }
-document.addEventListener(DOM_CONTENT_LOADED, contentLoaded);
+document.addEventListener(Event.DOM_CONTENT_LOADED, contentLoaded);

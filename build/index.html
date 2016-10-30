@@ -9,7 +9,14 @@
     <body>
         <h1>Sauene</h1>
 
-        <sauene-button>button</sauene-button>
-        <sauene-button url='http://google.com' target='_blank'>button with link</sauene-button>
+        <sauene-button class="btn1">button</sauene-button>
+        <sauene-button class="btn2" url='http://google.com' target='_blank'>button with link</sauene-button>
+
+        <script type="text/javascript">
+            let btn2 = document.querySelector('.btn2');
+            btn2.addEventListener('added-to-dom', event => {
+                console.log('button 1 is added to dom', btn2);
+            });
+        </script>
     </body>
 </html>
