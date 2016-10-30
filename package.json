@@ -1,0 +1,42 @@
+{
+  "name": "sauene",
+  "version": "0.0.1",
+  "description": "sauene is a bunch of web components",
+  "main": "gulpfile.js",
+  "scripts": {
+    "start": "gulp serve",
+    "serve": "gulp serve",
+    "build": "gulp build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simbiose/sauene.git"
+  },
+  "author": "Victor Potasso <victorpotasso@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/simbiose/sauene/issues"
+  },
+  "homepage": "https://github.com/simbiose/sauene#readme",
+  "devDependencies": {
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-es2015": "^6.16.0",
+    "babelify": "^7.3.0",
+    "browser-sync": "^2.17.2",
+    "browserify": "^13.1.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-filter": "^4.0.0",
+    "gulp-foreach": "^0.1.0",
+    "gulp-load-plugins": "^1.3.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-prettyerror": "^1.1.1",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
+  }
+}
