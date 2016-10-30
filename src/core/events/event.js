@@ -18,5 +18,5 @@ export class Event {
      * @type {String}
      * @const
      */
-    static get REMOVED_FROM_DOM() { return 'removed-to-dom'; }
+    static get REMOVED_FROM_DOM() { return 'removed-from-dom'; }
 }

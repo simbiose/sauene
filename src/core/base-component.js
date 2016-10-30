@@ -11,7 +11,7 @@ export class BaseComponent extends HTMLElement {
      * when the element is registered.
      */
     createdCallback() {
-        console.log(this.nodeName, 'createdCallback', arguments);
+        console.info(`<${this.nodeName.toLowerCase()}>::createdCallback`);
 
         // check attributes
         if(this.hasAttributes()) {
@@ -29,7 +29,7 @@ export class BaseComponent extends HTMLElement {
      * the element is inserted into the DOM.
      */
     attachedCallback() {
-        console.log(this.nodeName, 'attachedCallback', arguments);
+        console.info(`<${this.nodeName.toLowerCase()}>::attachedCallback`);
 
         let _event = document.createEvent('HTMLEvents');
         _event.initEvent(Event.ADDED_TO_DOM, false, true);
@@ -42,7 +42,7 @@ export class BaseComponent extends HTMLElement {
      * the element is removed from the DOM.
      */
     detachedCallback() {
-        console.log(this.nodeName, 'detachedCallback', arguments);
+        console.info(`<${this.nodeName.toLowerCase()}>::detachedCallback`);
 
         let _event = document.createEvent('HTMLEvents');
         _event.initEvent(Event.REMOVED_FROM_DOM, false, true);
@@ -55,6 +55,6 @@ export class BaseComponent extends HTMLElement {
      * an attribute of the element is added, changed, or removed
      */
     attributeChangedCallback(name, oldValue, newValue) {
-        console.log(this.nodeName, 'attributeChangedCallback', name, oldValue, newValue);
+        console.info(`<${this.nodeName.toLowerCase()}>::attributeChangedCallback ->`, name, oldValue, newValue);
     }
 }

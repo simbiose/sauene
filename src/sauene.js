@@ -1,15 +1,34 @@
-// polyfill
+/**
+ * Register Element Polyfill
+ * @see https://www.npmjs.com/package/document-register-element
+ */
 import 'document-register-element';
 
-import {Button} from './components/button';
+// Event
 import {Event} from './core/events/event';
+
+// Components
+import {Button} from './components/button';
 
 /**
  * Sauene
+ *
+ * @author Victor Potasso <victorpotasso@gmail.com>
+ * @date 29th October 2016
  */
 class Sauene {
+    /**
+     * PREFIX
+     * @type {String}
+     * @const
+     */
+    static get PREFIX() { return 'sauene-'; }
+
+    /**
+     * @constructor
+     */
     constructor() {
-        document.registerElement('sauene-button', Button);
+        document.registerElement(`${Sauene.PREFIX}button`, Button);
     }
 }
 

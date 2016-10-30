@@ -1560,7 +1560,7 @@ var BaseComponent = exports.BaseComponent = function (_HTMLElement) {
     _createClass(BaseComponent, [{
         key: 'createdCallback',
         value: function createdCallback() {
-            console.log(this.nodeName, 'createdCallback', arguments);
+            console.info('<' + this.nodeName.toLowerCase() + '>::createdCallback');
 
             // check attributes
             if (this.hasAttributes()) {
@@ -1581,7 +1581,7 @@ var BaseComponent = exports.BaseComponent = function (_HTMLElement) {
     }, {
         key: 'attachedCallback',
         value: function attachedCallback() {
-            console.log(this.nodeName, 'attachedCallback', arguments);
+            console.info('<' + this.nodeName.toLowerCase() + '>::attachedCallback');
 
             var _event = document.createEvent('HTMLEvents');
             _event.initEvent(_event2.Event.ADDED_TO_DOM, false, true);
@@ -1597,7 +1597,7 @@ var BaseComponent = exports.BaseComponent = function (_HTMLElement) {
     }, {
         key: 'detachedCallback',
         value: function detachedCallback() {
-            console.log(this.nodeName, 'detachedCallback', arguments);
+            console.info('<' + this.nodeName.toLowerCase() + '>::detachedCallback');
 
             var _event = document.createEvent('HTMLEvents');
             _event.initEvent(_event2.Event.REMOVED_FROM_DOM, false, true);
@@ -1613,7 +1613,7 @@ var BaseComponent = exports.BaseComponent = function (_HTMLElement) {
     }, {
         key: 'attributeChangedCallback',
         value: function attributeChangedCallback(name, oldValue, newValue) {
-            console.log(this.nodeName, 'attributeChangedCallback', name, oldValue, newValue);
+            console.info('<' + this.nodeName.toLowerCase() + '>::attributeChangedCallback ->', name, oldValue, newValue);
         }
     }]);
 
@@ -1669,7 +1669,7 @@ var Event = exports.Event = function () {
   }, {
     key: 'REMOVED_FROM_DOM',
     get: function get() {
-      return 'removed-to-dom';
+      return 'removed-from-dom';
     }
   }]);
 
@@ -1679,30 +1679,66 @@ var Event = exports.Event = function () {
 },{}],5:[function(require,module,exports){
 'use strict';
 
-require('document-register-element');
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * Register Element Polyfill
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @see https://www.npmjs.com/package/document-register-element
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
 
-var _button = require('./components/button');
+
+// Event
+
+
+// Components
+
+
+require('document-register-element');
 
 var _event = require('./core/events/event');
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } // polyfill
+var _button = require('./components/button');
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
  * Sauene
+ *
+ * @author Victor Potasso <victorpotasso@gmail.com>
+ * @date 29th October 2016
  */
-var Sauene = function Sauene() {
+var Sauene = function () {
+  _createClass(Sauene, null, [{
+    key: 'PREFIX',
+
+    /**
+     * PREFIX
+     * @type {String}
+     * @const
+     */
+    get: function get() {
+      return 'sauene-';
+    }
+
+    /**
+     * @constructor
+     */
+
+  }]);
+
+  function Sauene() {
     _classCallCheck(this, Sauene);
 
-    document.registerElement('sauene-button', _button.Button);
-};
+    document.registerElement(Sauene.PREFIX + 'button', _button.Button);
+  }
+
+  return Sauene;
+}();
 
 // boot
 
 
 function contentLoaded(event) {
-    document.removeEventListener(_event.Event.DOM_CONTENT_LOADED, contentLoaded);
-    new Sauene();
+  document.removeEventListener(_event.Event.DOM_CONTENT_LOADED, contentLoaded);
+  new Sauene();
 }
 document.addEventListener(_event.Event.DOM_CONTENT_LOADED, contentLoaded);
 
