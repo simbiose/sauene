@@ -1,6 +1,4 @@
-import {BaseComponent} from '../../core/base-component';
-
-export class Button extends BaseComponent {
+export class BaseComponent extends HTMLElement {
     constructor() {
         super();
     }
@@ -11,7 +9,16 @@ export class Button extends BaseComponent {
      * when the element is registered.
      */
     createdCallback() {
-        super.createdCallback();
+        console.log(this.nodeName, 'createdCallback', arguments);
+
+        // check attributes
+        if(this.hasAttributes()) {
+            let i = 0;
+            while(i < this.attributes.length) {
+                this.attributeChangedCallback(this.attributes[i].name, null, this.attributes[i].value);
+                i++;
+            }
+        }
     }
 
     /**
@@ -20,7 +27,7 @@ export class Button extends BaseComponent {
      * the element is inserted into the DOM.
      */
     attachedCallback() {
-        super.attachedCallback();
+        console.log(this.nodeName, 'attachedCallback', arguments);
     }
 
     /**
@@ -29,7 +36,7 @@ export class Button extends BaseComponent {
      * the element is removed from the DOM.
      */
     detachedCallback() {
-        super.detachedCallback();
+        console.log(this.nodeName, 'detachedCallback', arguments);
     }
 
     /**
@@ -38,15 +45,6 @@ export class Button extends BaseComponent {
      * an attribute of the element is added, changed, or removed
      */
     attributeChangedCallback(name, oldValue, newValue) {
-        super.attributeChangedCallback(name, oldValue, newValue);
-        switch(name) {
-            case 'url':
-                let url = newValue;
-                let target = this.getAttribute('target');
-                this.addEventListener('click', event => {
-                    window.open(url, target ? target : '');
-                });
-                break;
-        }
+        console.log(this.nodeName, 'attributeChangedCallback', name, oldValue, newValue);
     }
 }
